@@ -10,7 +10,7 @@ ville = st.text_input("Dans quelle ville êtes-vous ?")
 if st.button("Analyser mon choix"):
     st.write("Analyse de votre choix :", aliment)
 
-if "oignon" in aliment.lower():
+    if "oignon" in aliment.lower():
         st.write("💰 Prix indicatif : à déterminer selon le marché et la quantité.")
         st.write("🌿 Aliment : l'oignon apporte notamment des fibres et des composés végétaux.")
         st.write("🍽️ Conseil : peut être consommé cru ou cuit et utilisé comme accompagnement.")
