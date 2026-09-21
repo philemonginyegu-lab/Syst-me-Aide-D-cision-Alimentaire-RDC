@@ -6,6 +6,10 @@ aliment = st.text_input("Quel aliment voulez-vous évaluer ? ")
 
 ville = st.text_input("Dans quelle ville êtes-vous ?")
 quantite = st.number_input("Quelle quantité ?", min_value=1, value=1)
+unite = st.selectbox(
+    "Unité de mesure",
+    ["kg", "pièce", "tas"]
+)
 if st.button("Évaluer l'aliment"):
     st.write("Vous avez choisi :", aliment)
 print("Bonjour", nom)
