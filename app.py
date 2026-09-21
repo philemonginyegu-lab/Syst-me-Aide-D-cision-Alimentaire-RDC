@@ -27,7 +27,38 @@ st.write("💰 Prix total :", prix_total, "CDF")
 if budget >= prix_total:
     reste = budget - prix_total
     st.success(f"✅ Votre budget suffit. Il vous restera {reste} CDF.")
-else:
+else:if st.button("Évaluer l'aliment"):
+    st.write("Vous avez choisi :", aliment)
+
+print("Bonjour", nom)
+
+if st.button("Analyser mon choix"):
+    st.write("Analyse de votre choix :", aliment)
+    st.write("📍 Ville :", ville)
+
+    if "oignon" in aliment.lower():
+        st.write("🧅 Aliment : l'oignon peut être intégré dans une alimentation variée.")
+
+    elif "concombre" in aliment.lower():
+        st.write("🌿 Aliment : le concombre contient beaucoup d'eau et contribue à l'hydratation.")
+
+    elif "manioc" in aliment.lower():
+        st.write("🌿 Aliment : le manioc est une source de glucides et d'énergie.")
+        st.write("🍽️ Conseil : privilégiez une préparation adaptée et une portion équilibrée.")
+
+    elif "mil" in aliment.lower():
+        st.write("🌾 Aliment : le mil apporte des glucides et des fibres.")
+
+    elif "maïs" in aliment.lower() or "mais" in aliment.lower():
+        st.write("🌽 Aliment : le maïs est une source de glucides et d'énergie.")
+        st.write("🍽️ Conseil : associez-le à des légumes et à une source de protéines.")
+
+    elif "riz" in aliment.lower():
+        st.write("🍚 Aliment : le riz est principalement une source de glucides.")
+        st.write("🍽️ Conseil : associez-le à des légumes et à une source de protéines.")
+
+    else:
+        st.write("ℹ️ Nous n'avons pas encore suffisamment d'informations sur cet aliment.")
     manque = prix_total - budget
     st.warning(f"⚠️ Votre budget est insuffisant. Il vous manque {manque} CDF.")
 if st.button("Évaluer l'aliment"):
