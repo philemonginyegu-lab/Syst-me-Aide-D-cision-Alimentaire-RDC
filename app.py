@@ -38,20 +38,17 @@ if st.button("Analyser mon choix"):
     st.write("📍 Ville :", ville)
 
     if "oignon" in aliment.lower():
-        st.write("💰 Prix indicatif : à déterminer selon le marché et la quantité.")
-        st.write("🌿 Aliment : l'oignon apporte notamment des fibres et des composés végétaux.")
-        st.write("🍽️ Conseil : peut être consommé cru ou cuit et utilisé comme accompagnement.")
-        st.success("💡 Conseil : comparez le prix selon le marché et la quantité avant l'achat.")
+    if aliment.lower() == "concombre":
+    st.write("🌿 Aliment : le concombre contient beaucoup d'eau et contribue à l'hydratation.")
 
-    elif aliment.lower() == "concombre":
-        st.write("🌿 Aliment : le concombre contient beaucoup d'eau et contribue à l'hydratation.")
-        st.write("🍽️ Conseil : il peut être consommé cru, notamment en salade.")
-    
-          if quantite <= 2:
-             st.success("✅ Quantité raisonnable pour accompagner un repas équilibré.")
-          else:
-             st.info("💡 Vous avez choisi une quantité importante. Pensez à varier les aliments dans votre repas.")
+elif "manioc" in aliment.lower():
+    st.write("🌱 Aliment : le manioc est une source de glucides. La quantité consommée doit être prise en compte.")
 
+elif "mil" in aliment.lower():
+    st.write("🌾 Aliment : le mil apporte des glucides et des fibres.")
+
+else:
+    st.write("ℹ️ Nous n'avons pas encore suffisamment d'informations sur cet aliment.")
     elif "manioc" in aliment.lower():
         st.write("🌿 Aliment énergétique, particulièrement lorsqu'il est transformé ou cuit correctement.")
         st.write("🍽️ Conseil : privilégiez une préparation adaptée et une portion équilibrée.")
