@@ -3,10 +3,12 @@ print("Bienvenue dans le Système intelligent d'aide à la décision alimentaire
 
 nom = st.text_input("Quel est votre nom ? ")
 aliment = st.text_input("Quel aliment voulez-vous évaluer ? ")
+
+ville = st.text_input("Dans quelle ville êtes-vous ?")
+quantite = st.number_input("Quelle quantité ?", min_value=1, value=1)
 if st.button("Évaluer l'aliment"):
     st.write("Vous avez choisi :", aliment)
 print("Bonjour", nom)
-ville = st.text_input("Dans quelle ville êtes-vous ?")
 if st.button("Analyser mon choix"):
     st.write("Analyse de votre choix :", aliment)
 
