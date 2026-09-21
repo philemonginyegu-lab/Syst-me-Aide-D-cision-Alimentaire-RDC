@@ -15,6 +15,8 @@ prix_unitaire = st.number_input(
     min_value=0,
     value=0
 )
+prix_total = quantite * prix_unitaire
+st.write("💰 Prix total :", prix_total, "CDF")
 if st.button("Évaluer l'aliment"):
     st.write("Vous avez choisi :", aliment)
 print("Bonjour", nom)
