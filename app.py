@@ -6,6 +6,7 @@ aliment = st.text_input("Quel aliment voulez-vous évaluer ? ")
 if st.button("Évaluer l'aliment"):
     st.write("Vous avez choisi :", aliment)
 print("Bonjour", nom)
+ville = st.text_input("Dans quelle ville êtes-vous ?")
 if st.button("Analyser mon choix"):
     st.write("Analyse de votre choix :", aliment)
     st.success("Votre choix a bien été enregistré.")
