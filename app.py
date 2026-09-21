@@ -41,6 +41,27 @@ if st.button("Analyser mon choix"):
         st.write("🌿 Aliment : l'oignon apporte notamment des fibres et des composés végétaux.")
         st.write("🍽️ Conseil : peut être consommé cru ou cuit et utilisé comme accompagnement.")
         st.success("💡 Conseil : comparez le prix selon le marché et la quantité avant l'achat.")
+
+    elif "concombre" in aliment.lower():
+        st.write("🌿 Aliment : le concombre contient beaucoup d'eau et contribue à l'hydratation.")
+        st.write("🍽️ Conseil : il peut être consommé cru, notamment en salade.")
+
+    elif "manioc" in aliment.lower():
+        st.write("🌿 Aliment énergétique, particulièrement lorsqu'il est transformé ou cuit correctement.")
+        st.write("🍽️ Conseil : privilégiez une préparation adaptée et une portion équilibrée.")
+
+    elif "maïs" in aliment.lower() or "mais" in aliment.lower():
+        st.write("🌿 Aliment source de glucides et d'énergie.")
+        st.write("🍽️ Conseil : associez-le à des légumes et à une source de protéines.")
+
+    elif "riz" in aliment.lower():
+        st.write("🌿 Aliment principalement source de glucides.")
+        st.write("🍽️ Conseil : associez-le à des légumes et à une source de protéines.")
+
+    elif "haricot" in aliment.lower():
+        st.write("🌿 Le haricot apporte notamment des protéines végétales et des fibres.")
+        st.write("🍽️ Conseil : il peut être associé à des céréales et à des légumes.")
+
     else:
         st.info("Les informations détaillées pour cet aliment seront ajoutées prochainement.")
 print("Vous avez choisi :", aliment)
