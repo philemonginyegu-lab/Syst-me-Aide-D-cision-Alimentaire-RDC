@@ -36,7 +36,7 @@ if st.button("Analyser mon choix"):
     st.write("Analyse de votre choix :", aliment)
     st.write("📍 Ville :", ville)
 
-        if "oignon" in aliment.lower():
+    if "oignon" in aliment.lower():
         st.write("🧅 Aliment : l'oignon peut être intégré dans une alimentation variée.")
 
     elif "concombre" in aliment.lower():
