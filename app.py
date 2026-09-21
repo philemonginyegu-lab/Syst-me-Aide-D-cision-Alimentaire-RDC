@@ -9,6 +9,13 @@ print("Bonjour", nom)
 ville = st.text_input("Dans quelle ville êtes-vous ?")
 if st.button("Analyser mon choix"):
     st.write("Analyse de votre choix :", aliment)
-    st.success("Votre choix a bien été enregistré.")
+
+    if aliment.lower() == "oignon":
+        st.write("💰 Prix indicatif : à déterminer selon le marché et la quantité.")
+        st.write("🌿 Aliment : l'oignon apporte notamment des fibres et des composés végétaux.")
+        st.write("🍽️ Conseil : peut être consommé cru ou cuit et utilisé comme accompagnement.")
+        st.success("💡 Conseil : comparez le prix selon le marché et la quantité avant l'achat.")
+    else:
+        st.info("Les informations détaillées pour cet aliment seront ajoutées prochainement.")
 print("Vous avez choisi :", aliment)
 print("Le système va bientôt vous donner des conseils alimentaires.")
