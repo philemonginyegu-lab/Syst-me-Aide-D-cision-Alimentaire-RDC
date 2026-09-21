@@ -22,6 +22,12 @@ budget = st.number_input(
 )
 prix_total = quantite * prix_unitaire
 st.write("💰 Prix total :", prix_total, "CDF")
+if budget >= prix_total:
+    reste = budget - prix_total
+    st.success(f"✅ Votre budget suffit. Il vous restera {reste} CDF.")
+else:
+    manque = prix_total - budget
+    st.warning(f"⚠️ Votre budget est insuffisant. Il vous manque {manque} CDF.")
 if st.button("Évaluer l'aliment"):
     st.write("Vous avez choisi :", aliment)
 print("Bonjour", nom)
