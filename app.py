@@ -35,6 +35,7 @@ if st.button("Évaluer l'aliment"):
 print("Bonjour", nom)
 if st.button("Analyser mon choix"):
     st.write("Analyse de votre choix :", aliment)
+    st.write("📍 Ville :", ville)
 
     if "oignon" in aliment.lower():
         st.write("💰 Prix indicatif : à déterminer selon le marché et la quantité.")
@@ -43,8 +44,13 @@ if st.button("Analyser mon choix"):
         st.success("💡 Conseil : comparez le prix selon le marché et la quantité avant l'achat.")
 
     elif "concombre" in aliment.lower():
-        st.write("🌿 Aliment : le concombre contient beaucoup d'eau et contribue à l'hydratation.")
-        st.write("🍽️ Conseil : il peut être consommé cru, notamment en salade.")
+    st.write("🌿 Aliment : le concombre contient beaucoup d'eau et contribue à l'hydratation.")
+    st.write("🍽️ Conseil : il peut être consommé cru, notamment en salade.")
+    
+    if quantite <= 2:
+        st.success("✅ Quantité raisonnable pour accompagner un repas équilibré.")
+    else:
+        st.info("💡 Vous avez choisi une quantité importante. Pensez à varier les aliments dans votre repas.")
 
     elif "manioc" in aliment.lower():
         st.write("🌿 Aliment énergétique, particulièrement lorsqu'il est transformé ou cuit correctement.")
