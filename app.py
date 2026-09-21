@@ -15,6 +15,11 @@ prix_unitaire = st.number_input(
     min_value=0,
     value=0
 )
+budget = st.number_input(
+    "Quel est votre budget en CDF ?",
+    min_value=0,
+    value=0
+)
 prix_total = quantite * prix_unitaire
 st.write("💰 Prix total :", prix_total, "CDF")
 if st.button("Évaluer l'aliment"):
