@@ -10,6 +10,11 @@ unite = st.selectbox(
     "Unité de mesure",
     ["kg", "pièce", "tas"]
 )
+prix_unitaire = st.number_input(
+    "Prix unitaire en CDF",
+    min_value=0,
+    value=0
+)
 if st.button("Évaluer l'aliment"):
     st.write("Vous avez choisi :", aliment)
 print("Bonjour", nom)
