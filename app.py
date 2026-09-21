@@ -27,7 +27,7 @@ st.write("💰 Prix total :", prix_total, "CDF")
 if budget >= prix_total:
     reste = budget - prix_total
     st.success(f"✅ Votre budget suffit. Il vous restera {reste} CDF.")
-else:if st.button("Évaluer l'aliment"):
+if st.button("Évaluer l'aliment"):
     st.write("Vous avez choisi :", aliment)
 
 print("Bonjour", nom)
@@ -36,7 +36,7 @@ if st.button("Analyser mon choix"):
     st.write("Analyse de votre choix :", aliment)
     st.write("📍 Ville :", ville)
 
-    if "oignon" in aliment.lower():
+        if "oignon" in aliment.lower():
         st.write("🧅 Aliment : l'oignon peut être intégré dans une alimentation variée.")
 
     elif "concombre" in aliment.lower():
@@ -44,18 +44,16 @@ if st.button("Analyser mon choix"):
 
     elif "manioc" in aliment.lower():
         st.write("🌿 Aliment : le manioc est une source de glucides et d'énergie.")
-        st.write("🍽️ Conseil : privilégiez une préparation adaptée et une portion équilibrée.")
+        st.write("🍽️ Conseil : privilégiez une portion équilibrée.")
 
     elif "mil" in aliment.lower():
         st.write("🌾 Aliment : le mil apporte des glucides et des fibres.")
 
     elif "maïs" in aliment.lower() or "mais" in aliment.lower():
         st.write("🌽 Aliment : le maïs est une source de glucides et d'énergie.")
-        st.write("🍽️ Conseil : associez-le à des légumes et à une source de protéines.")
 
     elif "riz" in aliment.lower():
         st.write("🍚 Aliment : le riz est principalement une source de glucides.")
-        st.write("🍽️ Conseil : associez-le à des légumes et à une source de protéines.")
 
     else:
         st.write("ℹ️ Nous n'avons pas encore suffisamment d'informations sur cet aliment.")
@@ -68,35 +66,7 @@ if st.button("Analyser mon choix"):
     st.write("Analyse de votre choix :", aliment)
     st.write("📍 Ville :", ville)
 
-    if "oignon" in aliment.lower():
-    if aliment.lower() == "concombre":
-    st.write("🌿 Aliment : le concombre contient beaucoup d'eau et contribue à l'hydratation.")
 
-elif "manioc" in aliment.lower():
-    st.write("🌱 Aliment : le manioc est une source de glucides. La quantité consommée doit être prise en compte.")
-
-elif "mil" in aliment.lower():
-    st.write("🌾 Aliment : le mil apporte des glucides et des fibres.")
-
-else:
-    st.write("ℹ️ Nous n'avons pas encore suffisamment d'informations sur cet aliment.")
-    elif "manioc" in aliment.lower():
-        st.write("🌿 Aliment énergétique, particulièrement lorsqu'il est transformé ou cuit correctement.")
-        st.write("🍽️ Conseil : privilégiez une préparation adaptée et une portion équilibrée.")
-
-    elif "maïs" in aliment.lower() or "mais" in aliment.lower():
-        st.write("🌿 Aliment source de glucides et d'énergie.")
-        st.write("🍽️ Conseil : associez-le à des légumes et à une source de protéines.")
-
-    elif "riz" in aliment.lower():
-        st.write("🌿 Aliment principalement source de glucides.")
-        st.write("🍽️ Conseil : associez-le à des légumes et à une source de protéines.")
-
-    elif "haricot" in aliment.lower():
-        st.write("🌿 Le haricot apporte notamment des protéines végétales et des fibres.")
-        st.write("🍽️ Conseil : il peut être associé à des céréales et à des légumes.")
-
-    else:
-        st.info("Les informations détaillées pour cet aliment seront ajoutées prochainement.")
+    
 print("Vous avez choisi :", aliment)
 print("Le système va bientôt vous donner des conseils alimentaires.")
