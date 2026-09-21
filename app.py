@@ -47,10 +47,10 @@ if st.button("Analyser mon choix"):
         st.write("🌿 Aliment : le concombre contient beaucoup d'eau et contribue à l'hydratation.")
         st.write("🍽️ Conseil : il peut être consommé cru, notamment en salade.")
     
-    if quantite <= 2:
-        st.success("✅ Quantité raisonnable pour accompagner un repas équilibré.")
-    else:
-        st.info("💡 Vous avez choisi une quantité importante. Pensez à varier les aliments dans votre repas.")
+          if quantite <= 2:
+             st.success("✅ Quantité raisonnable pour accompagner un repas équilibré.")
+          else:
+             st.info("💡 Vous avez choisi une quantité importante. Pensez à varier les aliments dans votre repas.")
 
     elif "manioc" in aliment.lower():
         st.write("🌿 Aliment énergétique, particulièrement lorsqu'il est transformé ou cuit correctement.")
