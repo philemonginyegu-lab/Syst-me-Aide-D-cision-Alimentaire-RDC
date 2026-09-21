@@ -5,7 +5,7 @@ nom = st.text_input("Quel est votre nom ? ")
 aliment = st.text_input("Quel aliment voulez-vous évaluer ? ")
 
 ville = st.text_input("Dans quelle ville êtes-vous ?")
-quantite = st.number_input("Quelle quantité ?", min_value=1, value=1)
+quantite = st.number_input("Quelle quantité ?", min_value=1, value=1, step=1)
 unite = st.selectbox(
     "Unité de mesure",
     ["kg", "pièce", "tas"]
@@ -13,12 +13,14 @@ unite = st.selectbox(
 prix_unitaire = st.number_input(
     "Prix unitaire en CDF",
     min_value=0,
-    value=0
+    value=0,
+    step=100
 )
 budget = st.number_input(
     "Quel est votre budget en CDF ?",
     min_value=0,
-    value=0
+    value=0,
+    step=100
 )
 prix_total = quantite * prix_unitaire
 st.write("💰 Prix total :", prix_total, "CDF")
