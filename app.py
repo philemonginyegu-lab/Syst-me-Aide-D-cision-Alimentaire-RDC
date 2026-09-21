@@ -43,9 +43,9 @@ if st.button("Analyser mon choix"):
         st.write("🍽️ Conseil : peut être consommé cru ou cuit et utilisé comme accompagnement.")
         st.success("💡 Conseil : comparez le prix selon le marché et la quantité avant l'achat.")
 
-    elif "concombre" in aliment.lower():
-    st.write("🌿 Aliment : le concombre contient beaucoup d'eau et contribue à l'hydratation.")
-    st.write("🍽️ Conseil : il peut être consommé cru, notamment en salade.")
+    elif aliment.lower() == "concombre":
+        st.write("🌿 Aliment : le concombre contient beaucoup d'eau et contribue à l'hydratation.")
+        st.write("🍽️ Conseil : il peut être consommé cru, notamment en salade.")
     
     if quantite <= 2:
         st.success("✅ Quantité raisonnable pour accompagner un repas équilibré.")
