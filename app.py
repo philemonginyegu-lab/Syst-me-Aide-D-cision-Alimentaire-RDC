@@ -1,7 +1,7 @@
 import streamlit as st
 print("Bienvenue dans le Système intelligent d'aide à la décision alimentaire en RDC")
 
-nom = st.text.input("Quel est votre nom ? ")
+nom = st.text_input("Quel est votre nom ? ")
 aliment = input("Quel aliment voulez-vous évaluer ? ")
 
 print("Bonjour", nom)
