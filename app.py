@@ -64,6 +64,45 @@ if st.button("🔍 Analyser mon choix"):
     st.write("💰 Prix total :", prix_total, "CDF")
 
     aliment_lower = aliment.lower()
+        st.subheader("📊 Profil alimentaire")
+
+    if "haricot" in aliment_lower or "haricots" in aliment_lower:
+        st.write("💪 Protéines : bonnes")
+        st.write("🌾 Fibres : bonnes")
+        st.write("⚡ Énergie : modérée")
+
+    elif "poisson" in aliment_lower:
+        st.write("💪 Protéines : bonnes")
+        st.write("🌾 Fibres : faibles")
+        st.write("⚡ Énergie : variable selon la préparation")
+
+    elif "manioc" in aliment_lower:
+        st.write("💪 Protéines : faibles")
+        st.write("🌾 Fibres : modérées")
+        st.write("⚡ Énergie : élevée")
+
+    elif "riz" in aliment_lower:
+        st.write("💪 Protéines : faibles")
+        st.write("🌾 Fibres : variables selon le type de riz")
+        st.write("⚡ Énergie : élevée")
+
+    elif "mil" in aliment_lower or "fonio" in aliment_lower:
+        st.write("💪 Protéines : modérées")
+        st.write("🌾 Fibres : bonnes")
+        st.write("⚡ Énergie : modérée à élevée")
+
+    elif "concombre" in aliment_lower:
+        st.write("💧 Eau : élevée")
+        st.write("🌾 Fibres : modérées")
+        st.write("⚡ Énergie : faible")
+
+    elif "maïs" in aliment_lower or "mais" in aliment_lower:
+        st.write("💪 Protéines : modérées")
+        st.write("🌾 Fibres : modérées")
+        st.write("⚡ Énergie : élevée")
+
+    else:
+        st.info("ℹ️ Profil nutritionnel à compléter pour cet aliment.")
 
     if "oignon" in aliment_lower:
         st.success("🧅 L'oignon peut être intégré dans une alimentation variée.")
