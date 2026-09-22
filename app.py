@@ -76,6 +76,37 @@ if st.button("🔍 Analyser mon choix"):
     st.write("👤 Nom :", nom)
     st.write("🍽️ Aliment choisi :", aliment)
     st.write("📍 Ville :", ville)
+        st.subheader("🍽️ Suggestions pour compléter votre repas")
+
+    if "haricot" in aliment_lower:
+        st.write("🥬 Vous pouvez accompagner le haricot avec des légumes, du manioc ou du riz.")
+
+    elif "poisson" in aliment_lower:
+        st.write("🥬 Vous pouvez accompagner le poisson avec des légumes, du manioc, du riz ou du plantain.")
+
+    elif "manioc" in aliment_lower:
+        st.write("🫘 Vous pouvez accompagner le manioc avec du haricot, du poisson ou des légumes.")
+
+    elif "riz" in aliment_lower:
+        st.write("🐟 Vous pouvez accompagner le riz avec du poisson, du haricot ou des légumes.")
+
+    elif "mil" in aliment_lower:
+        st.write("🥬 Vous pouvez accompagner le mil avec des légumes et une source de protéines.")
+
+    elif "fonio" in aliment_lower:
+        st.write("🐟 Vous pouvez accompagner le fonio avec du poisson, du haricot ou des légumes.")
+
+    elif "maïs" in aliment_lower or "mais" in aliment_lower:
+        st.write("🫘 Vous pouvez accompagner le maïs avec du haricot, du poisson ou des légumes.")
+
+    elif "banane plantain" in aliment_lower or "plantain" in aliment_lower:
+        st.write("🐟 Vous pouvez accompagner le plantain avec du poisson, du haricot ou des légumes.")
+
+    elif "patate douce" in aliment_lower:
+        st.write("🥬 Vous pouvez accompagner la patate douce avec des légumes, du poisson ou du haricot.")
+
+    else:
+        st.write("ℹ️ Nous ajouterons progressivement des suggestions pour cet aliment.")
     st.write("📦 Quantité :", quantite, unite)
     st.write("💰 Prix total :", prix_total, "CDF")
 
