@@ -38,16 +38,36 @@ prix_total = quantite * prix_unitaire
 
 st.write("💰 Prix total :", prix_total, "CDF")
 
+
 if budget >= prix_total:
     reste = budget - prix_total
+
     st.success(
         f"✅ Votre budget suffit. Il vous restera {reste} CDF."
     )
+
+    if reste >= budget * 0.5:
+        st.info(
+            "💚 Conseil : votre budget vous laisse une marge importante. "
+            "Vous pouvez envisager d'autres aliments pour compléter votre repas."
+        )
+    else:
+        st.info(
+            "🟠 Conseil : votre budget est presque entièrement utilisé. "
+            "Pensez à garder une petite réserve."
+        )
+
 else:
     manque = prix_total - budget
+
     st.warning(
         f"⚠️ Votre budget est insuffisant. Il vous manque {manque} CDF."
     )
+
+    st.info(
+        "🔴 Conseil : vous pouvez réduire la quantité ou choisir "
+        "un aliment moins coûteux."
+)
 
 if st.button("🔍 Analyser mon choix"):
 
