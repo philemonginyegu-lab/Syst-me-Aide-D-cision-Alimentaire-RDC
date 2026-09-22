@@ -1,6 +1,6 @@
 import streamlit as st
 
-st.title("🥗 Système intelligent d'aide à la décision alimentaire en RDC")
+st.title("🥗 SIADA RDC")
 
 st.write("Bienvenue dans le Système intelligent d'aide à la décision alimentaire en RDC 🇨🇩")
 
