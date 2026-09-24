@@ -1,111 +1,278 @@
 import streamlit as st
 
-st.title("🥗 SIADA RDC")
+# ==========================================
+# SIADA 🇨🇩
+# Système intelligent d'aide à la décision
+# alimentaire en RDC
+# ==========================================
 
-st.write("Bienvenue dans le Système intelligent d'aide à la décision alimentaire en RDC 🇨🇩")
-
-nom = st.text_input("Quel est votre nom ?")
-aliment = st.text_input("Quel aliment voulez-vous évaluer ?")
-ville = st.text_input("Dans quelle ville êtes-vous ?")
-
-quantite = st.number_input(
-    "Quelle quantité ?",
-    min_value=1,
-    value=1,
-    step=1
+st.set_page_config(
+    page_title="SIADA - RDC",
+    page_icon="🥗",
+    layout="centered"
 )
 
-unite = st.selectbox(
-    "Unité de mesure",
-    ["kg", "pièce", "tas"]
+# ==========================================
+# TITRE
+# ==========================================
+
+st.title("🥗 SIADA 🇨🇩")
+st.subheader(
+    "Système intelligent d'aide à la décision alimentaire en RDC"
 )
 
-prix_unitaire = st.number_input(
-    "Prix unitaire en CDF",
-    min_value=0,
-    value=0,
-    step=100
+st.write(
+    "Entrez votre budget et votre ville. "
+    "SIADA vous proposera automatiquement des aliments "
+    "qui peuvent correspondre à votre budget."
+)
+
+st.divider()
+
+# ==========================================
+# INFORMATIONS DE L'UTILISATEUR
+# ==========================================
+
+nom = st.text_input(
+    "👤 Votre nom",
+    placeholder="Exemple : Philémon Ginyegu"
+)
+
+ville = st.text_input(
+    "📍 Dans quelle ville êtes-vous ?",
+    placeholder="Exemple : Kinshasa"
 )
 
 budget = st.number_input(
-    "Quel est votre budget en CDF ?",
+    "💰 Quel est votre budget ?",
     min_value=0,
-    value=0,
-    step=100
+    value=10000,
+    step=500
 )
 
-prix_total = quantite * prix_unitaire
+st.write(f"💵 Budget saisi : **{budget:,.0f} CDF**")
 
-st.write("💰 Prix total :", prix_total, "CDF")
+st.divider()
 
-if budget >= prix_total:
-    reste = budget - prix_total
-    st.success(f"✅ Votre budget suffit. Il vous restera {reste} CDF.")
+# ==========================================
+# BASE DE PRIX
+# ==========================================
 
-    if reste >= budget * 0.5:
-        st.info("💚 Votre budget vous laisse une marge importante.")
+aliments = {
+    "Manioc": {
+        "prix": 2000,
+        "unite": "kg",
+        "info": "Source importante de glucides."
+    },
+
+    "Oignon": {
+        "prix": 2000,
+        "unite": "kg",
+        "info": "Utilisé comme condiment et dans plusieurs préparations."
+    },
+
+    "Concombre": {
+        "prix": 2500,
+        "unite": "kg",
+        "info": "Aliment riche en eau et adapté aux salades."
+    },
+
+    "Maïs": {
+        "prix": 3000,
+        "unite": "kg",
+        "info": "Source de glucides pouvant être préparée de différentes façons."
+    },
+
+    "Mil": {
+        "prix": 4000,
+        "unite": "kg",
+        "info": "Céréale apportant notamment des glucides et des fibres."
+    },
+
+    "Haricot": {
+        "prix": 5000,
+        "unite": "kg",
+        "info": "Source de protéines végétales et de fibres."
+    },
+
+    "Patate douce": {
+        "prix": 3000,
+        "unite": "kg",
+        "info": "Source de glucides et de plusieurs micronutriments."
+    },
+
+    "Banane plantain": {
+        "prix": 3500,
+        "unite": "kg",
+        "info": "Source de glucides, consommée cuite dans de nombreuses préparations."
+    },
+
+    "Tomate": {
+        "prix": 3000,
+        "unite": "kg",
+        "info": "Légume-fruit utilisé dans de nombreuses préparations."
+    },
+
+    "Chou": {
+        "prix": 2500,
+        "unite": "kg",
+        "info": "Légume pouvant être consommé cuit ou en salade."
+    }
+}
+
+# ==========================================
+# FONCTION DE RECOMMANDATION
+# ==========================================
+
+def generer_recommandations(budget):
+    recommandations = []
+
+    for nom_aliment, donnees in aliments.items():
+
+        prix = donnees["prix"]
+
+        if budget >= prix:
+
+            quantite = int(budget // prix)
+
+            cout = quantite * prix
+
+            reste = budget - cout
+
+            recommandations.append({
+                "aliment": nom_aliment,
+                "prix": prix,
+                "unite": donnees["unite"],
+                "quantite": quantite,
+                "cout": cout,
+                "reste": reste,
+                "info": donnees["info"]
+            })
+
+    return recommandations
+
+
+# ==========================================
+# BOUTON PRINCIPAL
+# ==========================================
+
+if st.button(
+    "🔎 Générer les aliments adaptés à mon budget",
+    use_container_width=True
+):
+
+    if budget <= 0:
+
+        st.warning(
+            "⚠️ Veuillez entrer un budget supérieur à 0 CDF."
+        )
+
     else:
-        st.info("🟠 Votre budget est presque entièrement utilisé.")
 
-else:
-    manque = prix_total - budget
-    st.warning(f"⚠️ Votre budget est insuffisant. Il vous manque {manque} CDF.")
-    st.info("🔴 Vous pouvez réduire la quantité ou choisir un aliment moins coûteux.")
+        recommandations = generer_recommandations(budget)
+
+        st.divider()
+
+        st.subheader("🧠 Résultat de l'analyse SIADA")
+
+        if nom.strip() != "":
+            st.write(f"👋 Bonjour **{nom}** !")
+
+        if ville.strip() != "":
+            st.write(f"📍 Ville : **{ville}**")
+
+        st.write(
+            f"💰 Votre budget : **{budget:,.0f} CDF**"
+        )
+
+        # ==================================
+        # AFFICHAGE DES RÉSULTATS
+        # ==================================
+
+        if len(recommandations) == 0:
+
+            st.error(
+                "❌ Aucun aliment de notre base actuelle "
+                "ne correspond à ce budget."
+            )
+
+            st.info(
+                "💡 Essayez avec un budget plus élevé."
+            )
+
+        else:
+
+            st.success(
+                f"✅ SIADA a trouvé {len(recommandations)} "
+                "aliment(s) correspondant à votre budget."
+            )
+
+            st.write(
+                "Voici ce que vous pourriez acheter "
+                "avec votre budget :"
+            )
+
+            # ==================================
+            # CARTES DES ALIMENTS
+            # ==================================
+
+            for resultat in recommandations:
+
+                st.markdown("---")
+
+                st.subheader(
+                    f"🥗 {resultat['aliment']}"
+                )
+
+                st.write(
+                    f"💰 Prix estimé : "
+                    f"**{resultat['prix']:,.0f} CDF / "
+                    f"{resultat['unite']}**"
+                )
+
+                st.write(
+                    f"⚖️ Quantité possible : "
+                    f"**{resultat['quantite']} "
+                    f"{resultat['unite']}**"
+                )
+
+                st.write(
+                    f"💵 Coût total : "
+                    f"**{resultat['cout']:,.0f} CDF**"
+                )
+
+                st.write(
+                    f"💸 Argent restant : "
+                    f"**{resultat['reste']:,.0f} CDF**"
+                )
+
+                st.info(
+                    f"📊 Information : {resultat['info']}"
+                )
+
+            # ==================================
+            # CONSEIL SIADA
+            # ==================================
+
+            st.divider()
+
+            st.subheader("💡 Conseil SIADA")
+
+            st.write(
+                "Votre budget permet plusieurs possibilités. "
+                "Comparez les aliments proposés et choisissez "
+                "ceux qui correspondent à vos besoins et à vos "
+                "préférences."
+            )
 
 
-if st.button("🔍 Analyser mon choix"):
+# ==========================================
+# PIED DE PAGE
+# ==========================================
 
-    st.subheader("📋 Résultat de l'analyse")
+st.divider()
 
-    st.write("👤 Nom :", nom)
-    st.write("🍽️ Aliment choisi :", aliment)
-    st.write("📍 Ville :", ville)
-    st.write("📦 Quantité :", quantite, unite)
-    st.write("💰 Prix total :", prix_total, "CDF")
-
-    aliment_lower = aliment.lower()
-
-    if "oignon" in aliment_lower:
-        st.success("🧅 L'oignon peut être intégré dans une alimentation variée.")
-
-    elif "concombre" in aliment_lower:
-        st.success("🥒 Le concombre contient beaucoup d'eau et contribue à l'hydratation.")
-
-    elif "manioc" in aliment_lower:
-        st.success("🌿 Le manioc est une source de glucides et d'énergie.")
-        st.info("🍽️ Conseil : accompagnez-le de légumes et d'une source de protéines.")
-
-    elif "mil" in aliment_lower:
-        st.success("🌾 Le mil apporte des glucides et des fibres.")
-
-    elif "maïs" in aliment_lower or "mais" in aliment_lower:
-        st.success("🌽 Le maïs est une source de glucides et d'énergie.")
-
-    elif "riz" in aliment_lower:
-        st.success("🍚 Le riz est principalement une source de glucides.")
-
-    elif "haricot" in aliment_lower or "haricots" in aliment_lower:
-        st.success("🫘 Le haricot apporte notamment des protéines végétales et des fibres.")
-
-    elif "poisson" in aliment_lower:
-        st.success("🐟 Le poisson est une source de protéines.")
-
-    elif "fonio" in aliment_lower:
-        st.success("🌾 Le fonio est une céréale qui apporte des glucides et des fibres.")
-
-    elif "banane plantain" in aliment_lower or "plantain" in aliment_lower:
-        st.success("🍌 La banane plantain apporte principalement des glucides et de l'énergie.")
-
-    elif "patate douce" in aliment_lower:
-        st.success("🍠 La patate douce peut faire partie d'une alimentation variée.")
-
-    elif "avocat" in aliment_lower:
-        st.success("🥑 L'avocat apporte notamment des fibres et des matières grasses.")
-
-    elif "tomate" in aliment_lower or "tomates" in aliment_lower:
-        st.success("🍅 La tomate peut contribuer à une alimentation variée.")
-
-    else:
-        st.info("ℹ️ Nous n'avons pas encore suffisamment d'informations sur cet aliment.")
-
-    st.write("✅ Analyse terminée.")
+st.caption(
+    "SIADA 🇨🇩 — Système intelligent d'aide à la décision "
+    "alimentaire en RDC"
+)
