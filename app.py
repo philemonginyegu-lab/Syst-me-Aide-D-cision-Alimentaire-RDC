@@ -413,3 +413,138 @@ if st.button("Générer le rapport national"):
         )
 
     st.success("Rapport national généré.")
+
+# ==========================================================
+# 📊 MODULE DEMANDE ALIMENTAIRE
+# ==========================================================
+
+st.divider()
+st.header("📊 Demande alimentaire")
+
+st.write(
+    "Ce module permet d'enregistrer les besoins alimentaires "
+    "des ménages, commerçants, restaurants et institutions."
+)
+
+# Identification
+demandeur = st.text_input(
+    "👤 Nom ou identifiant du demandeur",
+    key="demande_demandeur"
+)
+
+type_demandeur = st.selectbox(
+    "🏷️ Type de demandeur",
+    [
+        "Ménage",
+        "Commerçant",
+        "Restaurant",
+        "Institution",
+        "Autre"
+    ],
+    key="demande_type"
+)
+
+# Localisation
+province_demande = st.text_input(
+    "📍 Province",
+    key="demande_province"
+)
+
+ville_demande = st.text_input(
+    "🏙️ Ville ou territoire",
+    key="demande_ville"
+)
+
+# Aliment
+aliment_demande = st.selectbox(
+    "🌾 Aliment recherché",
+    [
+        "Manioc",
+        "Maïs",
+        "Riz",
+        "Mil",
+        "Haricot",
+        "Arachide",
+        "Oignon",
+        "Concombre",
+        "Autre"
+    ],
+    key="demande_aliment"
+)
+
+# Quantité
+quantite_demande = st.number_input(
+    "📦 Quantité demandée",
+    min_value=0.0,
+    value=1.0,
+    step=1.0,
+    key="demande_quantite"
+)
+
+unite_demande = st.selectbox(
+    "⚖️ Unité",
+    [
+        "kg",
+        "tonne",
+        "sac",
+        "pièce",
+        "tas"
+    ],
+    key="demande_unite"
+)
+
+# Budget
+budget_demande = st.number_input(
+    "💰 Budget disponible (CDF)",
+    min_value=0,
+    value=0,
+    step=500,
+    key="demande_budget"
+)
+
+# Date
+date_demande = st.date_input(
+    "📅 Date de la demande",
+    key="demande_date"
+)
+
+# Enregistrement
+if st.button(
+    "📥 Enregistrer la demande",
+    key="enregistrer_demande"
+):
+
+    if demandeur == "":
+        st.error("⚠️ Veuillez entrer le nom ou l'identifiant du demandeur.")
+
+    elif province_demande == "":
+        st.error("⚠️ Veuillez indiquer la province.")
+
+    elif ville_demande == "":
+        st.error("⚠️ Veuillez indiquer la ville ou le territoire.")
+
+    elif quantite_demande <= 0:
+        st.error("⚠️ La quantité doit être supérieure à zéro.")
+
+    else:
+
+        st.success("✅ Demande alimentaire enregistrée avec succès !")
+
+        st.write("### 📋 Résumé de la demande")
+
+        st.write(f"**Demandeur :** {demandeur}")
+        st.write(f"**Type :** {type_demandeur}")
+        st.write(f"**Localisation :** {ville_demande}, {province_demande}")
+        st.write(
+            f"**Aliment :** {aliment_demande}"
+        )
+        st.write(
+            f"**Quantité demandée :** "
+            f"{quantite_demande:g} {unite_demande}"
+        )
+        st.write(
+            f"**Budget :** {budget_demande:,} CDF"
+        )
+        st.write(
+            f"**Date :** {date_demande}"
+)
