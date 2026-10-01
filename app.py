@@ -293,3 +293,123 @@ st.info(
     "puissent enregistrer leurs productions et que les responsables "
     "puissent consulter les données."
 )
+# ==========================================================
+# 🏛️ ESPACE GOUVERNEMENT CENTRAL
+# ==========================================================
+
+st.divider()
+st.header("🏛️ Suivi du Gouvernement central")
+
+st.write(
+    "Tableau de bord national pour le suivi de la production "
+    "et de la situation alimentaire en RDC."
+)
+
+# Données de démonstration
+production_nationale = {
+    "Manioc": 125000,
+    "Maïs": 82000,
+    "Riz": 45000,
+    "Mil": 28000,
+    "Haricot": 36000,
+    "Arachide": 24000
+}
+
+# Indicateurs nationaux
+col1, col2, col3, col4 = st.columns(4)
+
+with col1:
+    st.metric("🌾 Production totale", "340 000 tonnes")
+
+with col2:
+    st.metric("👨‍🌾 Producteurs suivis", "12 500")
+
+with col3:
+    st.metric("📍 Provinces suivies", "26")
+
+with col4:
+    st.metric("🍚 Aliments suivis", "6")
+
+
+# ----------------------------------------------------------
+# 🌾 PRODUCTION PAR ALIMENT
+# ----------------------------------------------------------
+
+st.subheader("🌾 Production nationale par aliment")
+
+for aliment, quantite in production_nationale.items():
+    st.write(f"**{aliment} : {quantite:,} tonnes**")
+
+
+# ----------------------------------------------------------
+# 📍 FILTRE PAR PROVINCE
+# ----------------------------------------------------------
+
+st.subheader("📍 Analyse par province")
+
+provinces = [
+    "Kinshasa",
+    "Kongo-Central",
+    "Kwilu",
+    "Kwango",
+    "Mai-Ndombe",
+    "Équateur",
+    "Haut-Katanga",
+    "Lualaba",
+    "Nord-Kivu",
+    "Sud-Kivu",
+    "Tshopo",
+    "Ituri"
+]
+
+province = st.selectbox(
+    "Sélectionnez une province",
+    provinces
+)
+
+st.info(
+    f"Vous consultez actuellement les données de la province : {province}"
+)
+
+
+# ----------------------------------------------------------
+# ⚠️ ALERTES
+# ----------------------------------------------------------
+
+st.subheader("⚠️ Alertes alimentaires")
+
+st.warning(
+    "⚠️ Certaines zones peuvent nécessiter un renforcement "
+    "de la production ou de l'approvisionnement."
+)
+
+st.success(
+    "✅ Le système peut être utilisé pour suivre "
+    "la production agricole nationale."
+)
+
+
+# ----------------------------------------------------------
+# 📊 RAPPORT NATIONAL
+# ----------------------------------------------------------
+
+st.subheader("📊 Rapport national")
+
+if st.button("Générer le rapport national"):
+
+    st.write("### 🇨🇩 Situation alimentaire nationale")
+
+    st.write(
+        "Le Gouvernement central peut consulter les données "
+        "de production, les zones couvertes et les principaux "
+        "aliments suivis par SIADA."
+    )
+
+    st.write("**Production suivie :**")
+
+    for aliment, quantite in production_nationale.items():
+        st.write(
+            f"- {aliment} : {quantite:,} tonnes"
+        )
+
+    st.success("Rapport national généré.")
