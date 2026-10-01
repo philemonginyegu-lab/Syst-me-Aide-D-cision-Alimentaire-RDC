@@ -6,7 +6,7 @@ st.set_page_config(
     layout="wide"
 )
 
-st.title("🍽️ SIADA - Système intelligent d'aide à la décision alimentaire en RDC🇨🇩")
+st.title("🍽️ SIADA - RDC🇨🇩")
 
 st.write(
     "SIADA aide les citoyens à composer un repas selon leur budget "
@@ -547,4 +547,101 @@ if st.button(
         )
         st.write(
             f"**Date :** {date_demande}"
+)
+        # ==========================================================
+# ⚖️ MODULE COMPARAISON PRODUCTION - DEMANDE
+# ==========================================================
+
+st.divider()
+st.header("⚖️ Comparaison Production - Demande")
+
+st.write(
+    "SIADA compare la production disponible avec la demande "
+    "alimentaire afin d'identifier les excédents et les déficits."
+)
+
+aliment_comparaison = st.selectbox(
+    "🌾 Sélectionnez l'aliment",
+    [
+        "Manioc",
+        "Maïs",
+        "Riz",
+        "Mil",
+        "Haricot",
+        "Arachide"
+    ],
+    key="comparaison_aliment"
+)
+
+production = st.number_input(
+    "🌾 Production disponible",
+    min_value=0.0,
+    value=0.0,
+    step=100.0,
+    key="comparaison_production"
+)
+
+demande = st.number_input(
+    "📊 Demande alimentaire",
+    min_value=0.0,
+    value=0.0,
+    step=100.0,
+    key="comparaison_demande"
+)
+
+unite_comparaison = st.selectbox(
+    "⚖️ Unité",
+    ["kg", "tonne", "sac"],
+    key="comparaison_unite"
+)
+
+if st.button(
+    "🔎 Analyser la situation",
+    key="analyser_production_demande"
+):
+
+    solde = production - demande
+
+    st.subheader("📋 Résultat de l'analyse")
+
+    st.write(f"**Aliment :** {aliment_comparaison}")
+    st.write(
+        f"**Production :** {production:g} "
+        f"{unite_comparaison}"
+    )
+    st.write(
+        f"**Demande :** {demande:g} "
+        f"{unite_comparaison}"
+    )
+
+    if solde > 0:
+
+        st.success(
+            f"🟢 Excédent de {solde:g} "
+            f"{unite_comparaison}."
+        )
+
+        st.info(
+            "La production disponible est supérieure "
+            "à la demande."
+        )
+
+    elif solde < 0:
+
+        deficit = abs(solde)
+
+        st.error(
+            f"🔴 Déficit de {deficit:g} "
+            f"{unite_comparaison}."
+        )
+
+        st.warning(
+            "La demande est supérieure à la production disponible."
+        )
+
+    else:
+
+        st.warning(
+            "🟡 Situation équilibrée : "
+            "la production correspond exactement à la demande."
 )
