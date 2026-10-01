@@ -645,3 +645,144 @@ if st.button(
             "🟡 Situation équilibrée : "
             "la production correspond exactement à la demande."
 )
+        # ==========================================================
+# 🇨🇩 SUIVI ALIMENTAIRE PAR PROVINCE
+# ==========================================================
+
+st.divider()
+st.header("🇨🇩 Suivi alimentaire par province")
+
+st.write(
+    "Cette section permet d'analyser la situation alimentaire "
+    "d'une province à partir de sa production et de sa demande."
+)
+
+province_suivi = st.selectbox(
+    "📍 Sélectionnez la province",
+    [
+        "Kinshasa",
+        "Kongo-Central",
+        "Kwilu",
+        "Kwango",
+        "Mai-Ndombe",
+        "Équateur",
+        "Mongala",
+        "Nord-Ubangi",
+        "Sud-Ubangi",
+        "Tshuapa",
+        "Tshopo",
+        "Bas-Uélé",
+        "Haut-Uélé",
+        "Ituri",
+        "Nord-Kivu",
+        "Sud-Kivu",
+        "Maniema",
+        "Sankuru",
+        "Kasaï",
+        "Kasaï-Central",
+        "Kasaï-Oriental",
+        "Lomami",
+        "Haut-Lomami",
+        "Haut-Katanga",
+        "Lualaba"
+    ],
+    key="province_suivi_siada"
+)
+
+aliment_suivi = st.selectbox(
+    "🌾 Aliment à suivre",
+    [
+        "Manioc",
+        "Maïs",
+        "Riz",
+        "Mil",
+        "Haricot",
+        "Arachide"
+    ],
+    key="aliment_suivi_siada"
+)
+
+production_province = st.number_input(
+    "🌾 Production disponible dans la province",
+    min_value=0.0,
+    value=0.0,
+    step=100.0,
+    key="production_province_siada"
+)
+
+demande_province_suivi = st.number_input(
+    "📊 Demande alimentaire dans la province",
+    min_value=0.0,
+    value=0.0,
+    step=100.0,
+    key="demande_province_siada"
+)
+
+unite_province = st.selectbox(
+    "⚖️ Unité",
+    ["kg", "tonne", "sac"],
+    key="unite_province_siada"
+)
+
+if st.button(
+    "📊 Analyser la province",
+    key="analyser_province_siada"
+):
+
+    solde_province = (
+        production_province - demande_province_suivi
+    )
+
+    st.subheader("📋 Situation alimentaire")
+
+    st.write(
+        f"**Province :** {province_suivi}"
+    )
+
+    st.write(
+        f"**Aliment :** {aliment_suivi}"
+    )
+
+    st.write(
+        f"**Production :** "
+        f"{production_province:g} {unite_province}"
+    )
+
+    st.write(
+        f"**Demande :** "
+        f"{demande_province_suivi:g} {unite_province}"
+    )
+
+    if solde_province > 0:
+
+        st.success(
+            f"🟢 Excédent : {solde_province:g} "
+            f"{unite_province}"
+        )
+
+        st.info(
+            f"{province_suivi} dispose d'une production "
+            f"supérieure à la demande pour {aliment_suivi}."
+        )
+
+    elif solde_province < 0:
+
+        deficit_province = abs(solde_province)
+
+        st.error(
+            f"🔴 Déficit : {deficit_province:g} "
+            f"{unite_province}"
+        )
+
+        st.warning(
+            f"{province_suivi} a besoin de "
+            f"{deficit_province:g} {unite_province} "
+            f"supplémentaires de {aliment_suivi}."
+        )
+
+    else:
+
+        st.warning(
+            "🟡 Équilibre : la production correspond "
+            "exactement à la demande."
+)
